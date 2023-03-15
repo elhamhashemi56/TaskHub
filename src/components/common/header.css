@@ -1,0 +1,14 @@
+.header_container{
+    display: flex;
+    flex-direction:row ;
+    justify-content: space-between;
+    /* border: 1px solid blue; */
+    padding: 7px;
+    
+}
+
+.header_Left{
+    display: flex;
+    align-items: center;
+    margin-left: 1rem;
+}

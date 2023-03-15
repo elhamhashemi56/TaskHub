@@ -1,0 +1,23 @@
+.svgIcon{
+    color:white;
+    width:1.4rem;
+    height:1.4rem;
+    margin: 5px;
+    
+}
+
+.overSvg{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+   
+}
+
+.overSvg:hover{
+   background: hsla(0,0%,100%,.2);
+   cursor: pointer;
+   border-radius: 4px;
+  
+   
+}
+
