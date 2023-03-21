@@ -1,7 +1,7 @@
 const SidebarProjects=()=>{
     return(
         <div>
-            <p>sidebar Projects</p>
+            <p className="mt-5">sidebar Projects</p>
         </div>
     )
 }
