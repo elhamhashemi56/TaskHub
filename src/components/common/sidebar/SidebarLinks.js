@@ -1,5 +1,6 @@
 import "./sidebar.css"
-import EntryIcon from "./EntryIcon"
+import {Link} from "react-router-dom";
+import InboxIcon from "./InboxIcon"
 import TodayIcon from "./TodayIcon"
 import SoonIcon from "./SoonIcon"
 import FilterLabelsIcon from "./FilterLabelsIcon"
@@ -10,8 +11,8 @@ const SidebarLinks=()=>{
         <section className="sidebarLinks_Container mt-5 ml-3 mr-3">
             
                 <div className="sidebarLinks_items">
-                    <EntryIcon  />
-                    <div className="ml-2">Entry</div>
+                    <InboxIcon  />
+                    <Link to='./entry' className='active ml-2'>Entry </Link>
                 </div>
                 <div>-</div>
         </section>
@@ -19,7 +20,7 @@ const SidebarLinks=()=>{
             
                 <div className="sidebarLinks_items">
                     <TodayIcon  />
-                    <div className="ml-2">Today</div>
+                    <Link to='./today' className='ml-2'>Today </Link>
                 </div>
                 <div>-</div>
         </section>
@@ -27,7 +28,7 @@ const SidebarLinks=()=>{
             
             <div className="sidebarLinks_items">
                 <SoonIcon  />
-                <div className="ml-2">Soon</div>
+                <Link to='./soon' className='ml-2'>Soon </Link>
             </div>
             <div>-</div>
         </section>
@@ -35,7 +36,7 @@ const SidebarLinks=()=>{
             
             <div className="sidebarLinks_items">
                 <FilterLabelsIcon  />
-                <div className="ml-2">Filter and Labels</div>
+                <Link to='./filterLabels' className=' ml-2'>Filter and Labels </Link>
             </div>
             <div>-</div>
         </section>
