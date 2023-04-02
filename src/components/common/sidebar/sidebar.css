@@ -18,11 +18,15 @@
     background-color: #eeeeee;
     border-radius: 5px;
     cursor: pointer;
-
+    
 }
 
 .sidebarLinks_items{
     display: flex;
     /* border: 1px solid sienna; */
    
+}
+
+.sidebarLinks_items a {
+    text-decoration: none;
 }
