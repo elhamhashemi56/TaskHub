@@ -37,7 +37,7 @@ const Main = () => {
 
     return (
         <div id='main'>
-            <NavbarMain/>
+            <NavbarMain />
             <Routes>
                 {ROUT_LIST.map(item=><Route path={item.path} exact={true} element={<item.element/>} />)}
                 <Route exact path='/' element={<Navigate to={"/inbox"}/>}></Route>
