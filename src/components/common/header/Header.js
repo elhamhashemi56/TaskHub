@@ -3,6 +3,7 @@ import HamburgerButton from "./HamburgerButton"
 // import HomeIcon from "./HomeIcon"
 import SearchIcon from "./SearchIcon"
 import "./svgIcon_Style.css"
+import { MdOutlineAccountCircle } from "react-icons/md";
 
 
 
@@ -21,7 +22,9 @@ const Header = ()=>{
                 <SearchIcon />
             </section>
             <section className="header_Right">
-                
+                <div className="accountKlass">
+                    <MdOutlineAccountCircle />
+                </div>  
             </section>
         </div>
     ) 

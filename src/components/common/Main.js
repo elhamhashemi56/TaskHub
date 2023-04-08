@@ -8,22 +8,22 @@ import {Navigate, Route, Routes} from "react-router-dom";
 
 export const ROUT_LIST=[
     {
-        title:"Welcome To Inbox",
+        title:"Inbox",
         path:"/inbox",
         element:Inbox
     },
     {
-        title:"Welcome To Today",
+        title:"Today",
         path:"/today",
         element:Today
     },
     {
-        title:"Welcome To Upcoming",
+        title:"Upcoming",
         path:"/upcoming",
         element:Upcoming
     },
     {
-        title:"Welcome To Filter And Labels",
+        title:"Filter & Labels",
         path:"/filterLabels",
         element:FilterLabels
     },

@@ -1,0 +1,28 @@
+ 
+
+input[type="text"].sectionInput {
+    border: 1px solid #e1e0e0;
+    width: 350px;
+}
+
+.section_container{
+    display: flex;
+    align-items: center;
+    background-color: #fafafa;
+    padding:5px;
+    width: 250px;
+    border-radius: 5px;
+}
+
+Button.section_container{
+    background-color: #fafafa;
+    width: 250px;
+    border-radius: 5px;
+    color: black;
+    border: none;
+}
+
+Button.section_container:hover{
+    background-color: transparent;
+    color: #DB4C3F;
+}

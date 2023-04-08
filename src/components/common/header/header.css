@@ -12,3 +12,15 @@
     align-items: center;
     margin-left: 1rem;
 }
+
+.accountKlass{
+    color: white;
+    margin-right: 1rem;
+    font-size: 1.5rem;
+    
+}
+
+.accountKlass:hover{
+    cursor: pointer;
+    
+}
