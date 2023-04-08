@@ -2,6 +2,7 @@ import { useState } from "react"
 import { Button,Form } from 'react-bootstrap';
 import "./inbox.css"
 
+
 const Inbox=()=>{
     const [showForm, setShowForm] = useState(false);
     const toggleForm = () => setShowForm(!showForm);
@@ -18,6 +19,31 @@ const Inbox=()=>{
         }
     ])
 
+    const handleChangeSection=(e) => {
+        const updatedSections = [...section];
+        updatedSections[section.length - 1].sectionName = e.target.value;
+        setSection(updatedSections);
+    }
+
+    const handleAddSection = () => {
+        
+        const newSection = {
+            sectionName: "",
+            task: [
+                {
+                    taskName: "",
+                    taskDescription: ""
+                }
+            ]
+        }
+        setSection([...section, newSection]);
+    }
+
+    const handleCancel =()=>{
+        const updateSection=[...section]
+        updateSection[section.length-1].sectionName=""
+        setSection(updateSection)
+    }
 
     return (
         <div className="ml-5">
@@ -29,10 +55,28 @@ const Inbox=()=>{
            }
             {showForm && (
                 <Form>
-                    <input type="text" className="form-control mb-3 ml-0 sectionInput" placeholder="Name This Section" />
+                    <input type="text" 
+                           className="form-control mb-3 ml-0 sectionInput" 
+                           placeholder="Name This Section" 
+                           value={section[section.length-1].sectionName}
+                           onChange={handleChangeSection}
+                           />
                     
-                    <Button className="mr-2">Add Section</Button>
-                    <Button onClick={toggleForm}>Cancel</Button>
+                    {/* <Button disabled={!section.sectionName} className="mr-2 addSectionButton">Add Section</Button> */}
+                    <Button
+                        disabled={!section[section.length-1].sectionName}
+                        className="mr-2 addSectionButton"
+                        onClick={handleAddSection}
+                    >
+                        Add Section
+                    </Button>
+                    <Button className="cancelButton"
+                            onClick={() => {
+                                        toggleForm();
+                                        handleCancel();
+                                    }}    
+                                
+                                    >Cancel</Button>
                 </Form>
             )}
         </div>

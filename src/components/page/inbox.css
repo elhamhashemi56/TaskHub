@@ -26,3 +26,51 @@ Button.section_container:hover{
     background-color: transparent;
     color: #DB4C3F;
 }
+
+.section_container:hover:hover{
+    color: #DB4C3F;
+}
+
+Button.section_container:active{
+    color: #DB4C3F;
+}
+
+Button.addSectionButton{
+    background-color: #DB4C3F;
+    border: none;
+}
+
+Button.addSectionButton:hover{
+    background-color: #DB4C3F;
+    border: none;
+}
+
+Button.addSectionButton:active{
+    background-color: #DB4C3F;
+    border: none;
+}
+
+Button.addSectionButton:disabled{
+    background-color: gray;
+    border: none;
+}
+
+Button.cancelButton{
+    background-color: transparent;
+    border: none;
+    color: rgb(85, 85, 85);
+}
+
+Button.cancelButton:hover{
+    background-color: transparent;
+    border: none;
+    color: rgb(85, 85, 85);
+    text-decoration: underline;
+}
+
+Button.cancelButton:active{
+    background-color: transparent;
+    border: none;
+    color: rgb(85, 85, 85);
+    text-decoration: underline;
+}
