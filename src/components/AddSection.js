@@ -4,89 +4,88 @@ import "./addSection.css"
 import ViewSections from "./ViewSections";
 
 
-const Inbox=()=>{
-    const [showForm, setShowForm] = useState(false);
-    const [isAddSectionClicked, setIsAddSectionClicked] = useState(false);
+const AddSection=()=>{
+    const [showSectionForm, setShowSectionForm] = useState(false);
+    const [sectionValue,setSectionValue]=useState("")
+    const [sections, setSections] = useState([
+        // {
+        //     sectionName:"",
+        //     task:[
+        //         {
+        //             taskName:"",
+        //             taskDescription:""
 
-    const toggleForm = () => {
-        setShowForm(!showForm);
-       
-    }
-
-    const [section, setSection] = useState([
-        {
-            sectionName:"",
-            task:[
-                {
-                    taskName:"",
-                    taskDescription:""
-
-                }
-            ]
-        }
+        //         }
+        //     ]
+        // }
     ]);
 
-    const handleChangeSection = (e) => {
-       
-          const updatedSections = [...section];
-          updatedSections[section.length - 1].sectionName = e.target.value;
-          setSection(updatedSections);
+    const toggleForm = () => {
+        setShowSectionForm(!showSectionForm);
         
+    }
+
+    const handleChangeSection = (e) => {
+          setSectionValue(e.target.value);
       }
+
 
     const handleAddSection = () => {
         
         const newSection = {
-            sectionName: "",
+            sectionName: sectionValue,
             task: [
-                {
-                    taskName: "",
-                    taskDescription: ""
-                }
+                // {
+                //     taskName: "",
+                //     taskDescription: ""
+                // }
             ]
         }
-        setSection([...section, newSection]);
-        setIsAddSectionClicked(true);
+        setSections([...sections, newSection]);
         toggleForm()
        
     }
 
     const handleCancel =()=>{
-        const updateSection=[...section]
-        updateSection[section.length-1].sectionName=""
-        setSection(updateSection)
+        setSectionValue("")
+        toggleForm()
     }
 
     return (
         <div className="pageSection_container  ">
             
-           {isAddSectionClicked && 
-            <div style={{display:"flex" , justifyContent:"space-around"}} >
-                    {section.map((item,index)=>{
+          
+            <div className="mapKlass" >
+                    {sections.map((item,index)=>{
+                        
                     return <ViewSections sectionData={item}
                                         sectionIndex={index}
+                                        setSection={setSections}
                                         />
+                                        
                     })}
+                    
             </div>
-            } 
             
-            {!showForm && 
-            <div className="section_container ml-5"> 
+           
+            
+            {!showSectionForm && 
+            <div className="section_container ml-4 mt-5"> 
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" className="board_add_section_button__icon mr-3"><path fill="currentColor" d="M19.5 20a.5.5 0 010 1h-15a.5.5 0 010-1h15zM18 6a2 2 0 012 2v8a2 2 0 01-2 2H6a2 2 0 01-2-2V8a2 2 0 012-2h12zm0 1H6a1 1 0 00-1 1v8a1 1 0 001 1h12a1 1 0 001-1V8a1 1 0 00-1-1zm-6 2a.5.5 0 01.5.5v2h2a.5.5 0 010 1h-2v2a.5.5 0 01-1 0v-2h-2a.5.5 0 010-1h2v-2A.5.5 0 0112 9zm7.5-6a.5.5 0 010 1h-15a.5.5 0 010-1h15z"></path></svg>
                 <Button className="section_container" onClick={toggleForm}>Add Section</Button>
             </div>
            }
-            {showForm && (
+            {showSectionForm && (
                 <Form className="ml-5">
                     <input type="text" 
                            className="form-control mb-3 ml-0 sectionInput" 
                            placeholder="Name This Section" 
-                           value={section[section.length-1].sectionName}
+                           value={sectionValue}
                            onChange={handleChangeSection}
                            />
                     
                     <Button
-                        disabled={!section[section.length-1].sectionName}
+                        disabled={!sectionValue}
                         className="mr-2 addSectionButton"
                         onClick={handleAddSection}
                     >Add Section   
@@ -107,4 +106,4 @@ const Inbox=()=>{
     )
 }
 
-export default Inbox
+export default AddSection

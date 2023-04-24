@@ -1,0 +1,43 @@
+.viewSection_Container{
+    display: flex;
+    flex-direction: column;
+    /* border: 1px solid red; */
+    margin: 0rem 3rem;
+    
+}
+
+.sectionNameKlass{
+    font-weight: bold;
+}
+
+
+
+Button.addTaskButton{
+    background-color: transparent;
+    color: black;
+    border: none;
+}
+
+Button.addTaskButton:hover{
+    background-color: transparent;
+    color: #db4c3f;
+    border: none;
+}
+
+Button.addTaskButton:active{
+    background-color: transparent;
+    color: #db4c3f;
+    border: none;
+}
+
+input[type="text"].taskInput {
+    border: 1px solid #e1e0e0;
+    width: 16rem;
+}
+
+.task_container{
+    border: 1px solid gray;
+    width: 70%;
+    padding: 10px;
+    border-radius: 5px;
+}
