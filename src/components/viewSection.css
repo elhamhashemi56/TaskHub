@@ -16,6 +16,8 @@ Button.addTaskButton{
     background-color: transparent;
     color: black;
     border: none;
+    padding: 0;
+   
 }
 
 Button.addTaskButton:hover{
@@ -40,4 +42,22 @@ input[type="text"].taskInput {
     width: 70%;
     padding: 10px;
     border-radius: 5px;
+}
+
+.classPlusButton{
+    background-color: #db4c3f;
+    border: none;
+
+}
+
+.classPlusButton:hover{
+    background-color: #db4c3f;
+    border: none;
+    
+}
+
+.classPlusButton:disabled{
+    background-color: gray;
+    border: none;
+    
 }
