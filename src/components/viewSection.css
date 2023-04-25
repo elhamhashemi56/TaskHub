@@ -14,7 +14,7 @@
 
 Button.addTaskButton{
     background-color: transparent;
-    color: black;
+    color: #db4c3f;
     border: none;
     padding: 0;
    
@@ -61,3 +61,16 @@ input[type="text"].taskInput {
     border: none;
     
 }
+
+.itemsDone{
+    text-decoration: line-through;
+}
+
+.itemsDontDone{
+    border: 1px solid rgb(191, 191, 191);
+    padding: 10px;
+    border-radius: 10px;
+    width: 30%;
+    margin-bottom: 5px;
+}
+

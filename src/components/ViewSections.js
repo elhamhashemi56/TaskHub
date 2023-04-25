@@ -1,6 +1,7 @@
 import "./viewSection.css"
 import { Button,Form } from 'react-bootstrap';
 import { useState } from "react";
+import CompletedTasks from "./CompletedTasks"
 
 const ViewSections=({sectionData,sectionIndex,setSection})=>{
     const [showTaskForm, setShowTaskForm] = useState(false);
@@ -36,17 +37,28 @@ const ViewSections=({sectionData,sectionIndex,setSection})=>{
     }
 
     const handleAddTask=()=>{
-
+        const lastId = todos.length > 0 ? todos[todos.length - 1].id : 0;
         const newTodo = {   
             title: taskValue.taskName,
             description: taskValue.taskDescription,
-            sectionId:sectionIndex
+            sectionId:sectionIndex,
+            done:false,
+            id:lastId+1
           };
          console.log("newTodo",newTodo);
           setTodos([...todos,newTodo])
           setTaskValue({taskName:"",taskDescription:""})
           toggleForm()
     }
+
+
+    const handleChangeDone=(id)=>{
+        const newTodos = [...todos];
+        newTodos.find(item=>item.id===id).done = true
+        console.log("find",newTodos);
+        setTodos(newTodos);
+    }
+
 
     return(
         <div className="viewSection_Container mb-5">
@@ -55,11 +67,24 @@ const ViewSections=({sectionData,sectionIndex,setSection})=>{
             </div>
 
             <div>
-                {todos.map(item=>{
-                 return   <li>
+                {todos.filter(item=> !item.done).map(item=>{
+                 return   <div className="itemsDontDone">
+                            <input type="checkbox"
+                                   className="mr-2" 
+                                   value={item.done}
+                                   onChange={()=>handleChangeDone(item.id)}
+                                   />
                             {item.title}
-                          </li>
+                          </div>
                 })}
+
+                <h6>Completed Tasks</h6>
+                <CompletedTasks todos={todos}/>
+                {/* {todos.filter(item=> item.done).map(item=>{
+                 return   <div className="itemsDone" >
+                            {item.title}
+                          </div>
+                })} */}
             </div>
 
             {!showTaskForm &&

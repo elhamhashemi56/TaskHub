@@ -1,5 +1,4 @@
 {
-  "homepage": "http://elhamhashemi56.github.io/TaskHub",
   "name": "TaskHub",
   "version": "0.1.0",
   "private": true,
@@ -7,7 +6,7 @@
     "@testing-library/user-event": "^14.4.3",
     "bootstrap": "^4.5.3",
     "react": "^18.2.0",
-    "react-bootstrap": "^1.4.3",
+    "react-bootstrap": "^1.6.6",
     "react-dom": "^18.2.0",
     "react-icons": "^4.8.0",
     "react-router-dom": "^6.10.0",
