@@ -4,7 +4,7 @@
    
   }
   
-  input[type="text"] {
+  input[type="text"].searchInput {
     width: 250px;
     padding: 4px;
     border: none;
@@ -31,7 +31,7 @@
     color: black;
   }
 
-  input[type="text"]:focus {
+  input[type="text"].searchInput:focus {
     background-color: white;
     border: none;
     outline: none;
@@ -39,7 +39,7 @@
     width: 30rem;
   }
 
-  input[type="text"]:focus::placeholder {
+  input[type="text"].searchInput:focus::placeholder {
     color: black;
 
   }

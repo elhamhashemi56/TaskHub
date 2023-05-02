@@ -1,9 +1,12 @@
 import "./viewSection.css"
 import { Button,Form } from 'react-bootstrap';
-import { useState } from "react";
+import { useState,useRef  } from "react";
 import CompletedTasks from "./CompletedTasks"
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 
 const ViewSections=({sectionData,sectionIndex,setSection})=>{
+    
     const [showTaskForm, setShowTaskForm] = useState(false);
     const [taskValue,setTaskValue]=useState(
         {
@@ -19,6 +22,13 @@ const ViewSections=({sectionData,sectionIndex,setSection})=>{
         // {id: 5, sectionId:"", title: "item 6", done: false},
     ])
 
+    const [selectedDate, setSelectedDate] = useState(null);
+    const datepickerRef = useRef(null);
+
+    const handleDateChange = (date) => {
+    setSelectedDate(date);
+    };
+    
     const handleChangeTask=(e)=>{
         const newTaskValue = {...taskValue};
         console.log("e.target.value",e.target.value);
@@ -33,6 +43,8 @@ const ViewSections=({sectionData,sectionIndex,setSection})=>{
     }
 
     const handleCancel=()=>{
+        taskValue.taskName=""
+        taskValue.taskDescription=""
         toggleForm()
     }
 
@@ -59,6 +71,7 @@ const ViewSections=({sectionData,sectionIndex,setSection})=>{
         setTodos(newTodos);
     }
 
+    
 
     return(
         <div className="viewSection_Container mb-5">
@@ -80,11 +93,27 @@ const ViewSections=({sectionData,sectionIndex,setSection})=>{
 
                 <h6>Completed Tasks</h6>
                 <CompletedTasks todos={todos}/>
-                {/* {todos.filter(item=> item.done).map(item=>{
+                {todos.filter(item=> item.done).map(item=>{
                  return   <div className="itemsDone" >
                             {item.title}
                           </div>
-                })} */}
+                })}
+
+                {/* <div class="accordion" id="accordionExample">
+                <div class="accordion-item">
+                    <h2 class="accordion-header">
+                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                        Accordion Item #1
+                    </button>
+                    </h2>
+                    <div id="collapseOne" class="accordion-collapse collapse show" data-bs-parent="#accordionExample">
+                    <div class="accordion-body">
+                        <strong>This is the first item's accordion body.</strong> It is shown by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
+                    </div>
+                    </div>
+                </div>
+                </div> */}
+
             </div>
 
             {!showTaskForm &&
@@ -113,12 +142,44 @@ const ViewSections=({sectionData,sectionIndex,setSection})=>{
                             onChange={handleChangeTask}
                             
                             />
-                    <Button className="classPlusButton"
-                            onClick={handleAddTask}
-                            disabled={!taskValue.taskName}
-                            >+
-                    </Button>
-                    <Button onClick={handleCancel} className="cancelButton">x</Button>
+                            
+                    <div className="iconsTaskForm"> 
+                           
+                        <div className="datePicker mr-2">
+                            <img onClick={() => datepickerRef.current.setOpen(true)} className="svgInAddTask" src="/assets/icons/DueDate.svg" />
+                            <DatePicker
+                                        selected={selectedDate}
+                                        onChange={handleDateChange}
+                                        ref={datepickerRef}
+                                    />
+                        </div>
+                        <div>
+                            <img className="svgInAddTask mr-2" src="/assets/icons/Priority.svg" />
+                        </div>
+                        <div>
+                            <img className="svgInAddTask" src="/assets/icons/Reminder.svg" />
+                        </div>
+                    </div>
+                            
+                             
+                    <div className="line"></div>
+                    <div className="buttonTask_Container">
+                        <div>
+                            <input></input>
+                        </div>
+                        <div>
+                            <Button className="classPlusButton"
+                                onClick={handleAddTask}
+                                disabled={!taskValue.taskName}
+                                >+
+                            </Button>
+                            <Button onClick={handleCancel} 
+                                    className="cancelButton"
+                                    >x
+                            </Button>
+                        </div>
+                    </div>
+                    
                 </Form>
             )}
             

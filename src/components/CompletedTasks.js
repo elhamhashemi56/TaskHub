@@ -1,4 +1,5 @@
 import {Accordion} from 'react-bootstrap';
+import React from 'react';
 
 const CompletedTasks = ({ todos }) => {
     return (

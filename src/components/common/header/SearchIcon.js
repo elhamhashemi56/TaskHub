@@ -5,7 +5,7 @@ const SearchIcon=()=>{
         
         <div className="search-container">
             <i className="fa fa-search"></i>
-            <input type="text" placeholder="Search" />
+            <input type="text" className="searchInput" placeholder="Search" />
            
         </div>
     )
