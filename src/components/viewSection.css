@@ -39,9 +39,9 @@ input[type="text"].taskInput {
 
 .task_container{
     border: 1px solid rgb(191, 191, 191);
-    width: 40%;
     padding: 10px;
     border-radius: 10px;
+    width: 40%;
 }
 
 .classPlusButton{
@@ -81,6 +81,7 @@ input[type="text"].taskInput {
     
 }
 
+
 .svgInAddTask:hover{
     border: 1px solid rgb(177, 176, 176);
     padding: 5px;
@@ -108,7 +109,6 @@ input[type="text"].taskInput {
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 40%;
     height: 2rem;
     font-size: 13px;
 }
@@ -117,14 +117,18 @@ input[type="text"].taskInput {
     display: flex;
 }
 
-input[type="text"].react-datepicker-ignore-onclickoutside{
-    border: 1px solid rgb(177, 176, 176);
+
+.react-datepicker__input-container {
+    padding: 0;
+}
+
+.react-datepicker__input-container input{
+    border: unset;
     padding: 5px;
     border-radius: 5px;
-    background-color: red;
-    width:60%;
+   
 }
-.react-datepicker__input-container {
-    
-    padding: 0;
+.react-datepicker__input-container input:focus{
+    border: unset;
+    outline: unset;
 }

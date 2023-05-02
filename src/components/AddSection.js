@@ -43,6 +43,7 @@ const AddSection=()=>{
         }
         setSections([...sections, newSection]);
         toggleForm()
+        setSectionValue("")
        
     }
 
@@ -76,7 +77,7 @@ const AddSection=()=>{
             </div>
            }
             {showSectionForm && (
-                <Form className="ml-5">
+                <Form className="ml-5" onSubmit={handleAddSection}>
                     <input type="text" 
                            className="form-control mb-3 ml-0 sectionInput" 
                            placeholder="Name This Section" 
@@ -85,9 +86,10 @@ const AddSection=()=>{
                            />
                     
                     <Button
+                        type="submit"
                         disabled={!sectionValue}
                         className="mr-2 addSectionButton"
-                        onClick={handleAddSection}
+                        
                     >Add Section   
                     </Button>
                     <Button className="cancelButton"
