@@ -29,17 +29,14 @@
       "id": 4
     },
     {
-      "title": "fff",
-      "description": "fff",
-      "sectionId": 1,
-      "done": false,
+      "done": true,
       "id": 5
     },
     {
       "title": "fff",
       "description": "fff",
       "sectionId": 2,
-      "done": false,
+      "done": true,
       "id": 6
     },
     {
@@ -55,6 +52,17 @@
       "sectionId": 3,
       "done": false,
       "id": 8
+    },
+    {
+      "done": true,
+      "id": 9
+    },
+    {
+      "title": "wohnzimmer",
+      "description": "",
+      "sectionId": 4,
+      "done": true,
+      "id": 10
     }
   ],
   "sections": [

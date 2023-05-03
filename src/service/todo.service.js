@@ -33,5 +33,8 @@ export const TodoService = {
     },
     addTasks(body) {
         return axios.post(baseUrl + "/todos", body)
+    },
+    updataTodo(id,newTodo){
+        return axios.patch(`${baseUrl}/todos/${id}`,newTodo)
     }
 }

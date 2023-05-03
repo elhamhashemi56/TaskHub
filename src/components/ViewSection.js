@@ -61,20 +61,6 @@ const ViewSection=({sectionData,updateData,sectionIndex,setSection})=>{
 
             setTaskValue({taskName:"",taskDescription:""})
             toggleForm()
-
-
-        // const lastId = todos.length > 0 ? todos[todos.length - 1].id : 0;
-        // const newTodo = {   
-        //     title: taskValue.taskName,
-        //     description: taskValue.taskDescription,
-        //     sectionId:sectionIndex,
-        //     done:false,
-        //     id:lastId+1
-        //   };
-        //  console.log("newTodo",newTodo);
-        //   setTodos([...todos,newTodo])
-        //   setTaskValue({taskName:"",taskDescription:""})
-        //   toggleForm()
     }
 
 
@@ -83,6 +69,16 @@ const ViewSection=({sectionData,updateData,sectionIndex,setSection})=>{
         // newTodos.find(item=>item.id===id).done = true
         // console.log("find",newTodos);
         // setTodos(newTodos);
+
+        const newTodo={
+            done:true
+        }
+
+        TodoService.updataTodo(id,newTodo)
+        .then(res=>{
+            updateData()
+        })
+        .catch(err=>err.message)
     }
 
     
