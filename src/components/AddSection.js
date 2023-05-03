@@ -32,11 +32,11 @@ const AddSection=()=>{
     function getData(){
         TodoService.getTodos().then(res=>{
             setAllTodos(res.data)
-        }).catch(err=>alert("khata allTodos"))
+        }).catch(err=>alert(err.message))
 
         TodoService.getSections().then(res=>{
             setAllSections(res.data)
-        }).catch(err=>alert("khata allSections"))
+        }).catch(err=>alert(err.message))
     }
 
 
@@ -44,6 +44,7 @@ const AddSection=()=>{
        return allsections.map(item=>{
             const tasks=allTodos.filter(ele=>ele.sectionId === item.id)
             return{
+                id:item.id,
                 sectionName:item.title,
                 tasks
             }
@@ -72,7 +73,7 @@ const AddSection=()=>{
             .then(res=>{
                 getData()
             })
-            .catch(err=>alert("khata addsection"))
+            .catch(err=>alert(err.message))
 
         toggleForm()
        
@@ -93,7 +94,7 @@ const AddSection=()=>{
                         
                     return <ViewSection sectionData={item}
                                         sectionIndex={index}
-                                        setSection={()=>{}}
+                                        updateData={getData}
                                         />
                                         
                     })}

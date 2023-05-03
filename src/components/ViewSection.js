@@ -4,8 +4,9 @@ import { useState,useRef  } from "react";
 import CompletedTasks from "./CompletedTasks"
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import { TodoService } from "../service/todo.service";
 
-const ViewSection=({sectionData,sectionIndex,setSection})=>{
+const ViewSection=({sectionData,updateData,sectionIndex,setSection})=>{
     
     const [showTaskForm, setShowTaskForm] = useState(false);
     const [taskValue,setTaskValue]=useState(
@@ -43,6 +44,25 @@ const ViewSection=({sectionData,sectionIndex,setSection})=>{
     }
 
     const handleAddTask=()=>{
+
+        const body={
+            title:taskValue.taskName,
+            description:taskValue.taskDescription,
+            sectionId:sectionData.id,
+            done:false
+
+        }
+
+        TodoService.addTasks(body)
+        .then(res=>{
+            updateData()
+        })
+        .catch(err=>alert(err.message))
+
+            setTaskValue({taskName:"",taskDescription:""})
+            toggleForm()
+
+
         // const lastId = todos.length > 0 ? todos[todos.length - 1].id : 0;
         // const newTodo = {   
         //     title: taskValue.taskName,
@@ -74,7 +94,7 @@ const ViewSection=({sectionData,sectionIndex,setSection})=>{
             </div>
 
             <div>
-                {sectionData.task.filter(item=> !item.done).map(item=>{
+                {sectionData.tasks.filter(item=> !item.done).map(item=>{
                  return   <div className="itemsDontDone">
                             <input type="checkbox"
                                    className="mr-2" 
@@ -87,7 +107,7 @@ const ViewSection=({sectionData,sectionIndex,setSection})=>{
 
                 <h6>Completed Tasks</h6>
                 {/* <CompletedTasks todos={todos}/> */}
-                {sectionData.task.filter(item=> item.done).map(item=>{
+                {sectionData.tasks.filter(item=> item.done).map(item=>{
                  return   <div className="itemsDone" >
                             {item.title}
                           </div>
