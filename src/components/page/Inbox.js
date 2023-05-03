@@ -1,7 +1,7 @@
 
 import "./inbox.css"
 import AddSection from "../AddSection"
-import ViewSections from "../ViewSections.js"
+
 
 
 const Inbox=()=>{

@@ -1,13 +1,18 @@
 import { useState } from "react"
 import { Button,Form } from 'react-bootstrap';
 import "./addSection.css"
-import ViewSections from "./ViewSections";
+import ViewSection from "./ViewSection";
+import { useEffect } from "react";
+import { TodoService } from "../service/todo.service";
+import { useMemo } from "react";
 
 
 const AddSection=()=>{
     const [showSectionForm, setShowSectionForm] = useState(false);
     const [sectionValue,setSectionValue]=useState("")
-    const [sections, setSections] = useState([
+    const [allTodos,setAllTodos]=useState([])
+    const [allsections,setAllSections]=useState([])
+    //const [sections, setSections] = useState([
         // {
         //     sectionName:"",
         //     task:[
@@ -18,7 +23,34 @@ const AddSection=()=>{
         //         }
         //     ]
         // }
-    ]);
+    //]);
+
+    useEffect(()=>{
+        getData()
+    },[])
+
+    function getData(){
+        TodoService.getTodos().then(res=>{
+            setAllTodos(res.data)
+        }).catch(err=>alert("khata allTodos"))
+
+        TodoService.getSections().then(res=>{
+            setAllSections(res.data)
+        }).catch(err=>alert("khata allSections"))
+    }
+
+
+   const sections=useMemo(()=>{
+       return allsections.map(item=>{
+            const tasks=allTodos.filter(ele=>ele.sectionId === item.id)
+            return{
+                sectionName:item.title,
+                tasks
+            }
+        })
+
+    },[allTodos,allsections])
+
 
     const toggleForm = () => {
         setShowSectionForm(!showSectionForm);
@@ -33,17 +65,17 @@ const AddSection=()=>{
     const handleAddSection = () => {
         
         const newSection = {
-            sectionName: sectionValue,
-            task: [
-                // {
-                //     taskName: "",
-                //     taskDescription: ""
-                // }
-            ]
+            title: sectionValue,
         }
-        setSections([...sections, newSection]);
+        
+        TodoService.addSection(newSection)
+            .then(res=>{
+                getData()
+            })
+            .catch(err=>alert("khata addsection"))
+
         toggleForm()
-        setSectionValue("")
+       
        
     }
 
@@ -59,9 +91,9 @@ const AddSection=()=>{
             <div className="mapKlass" >
                     {sections.map((item,index)=>{
                         
-                    return <ViewSections sectionData={item}
+                    return <ViewSection sectionData={item}
                                         sectionIndex={index}
-                                        setSection={setSections}
+                                        setSection={()=>{}}
                                         />
                                         
                     })}

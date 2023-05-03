@@ -1,19 +1,38 @@
 {
-  "posts": [
+  "todos": [
     {
       "id": 1,
-      "title": "json-server",
-      "author": "typicode"
+      "title": "html",
+      "description":"",
+      "done": "false",
+      "sectionId":1
+    },
+    {
+      "id": 2,
+      "title": "css",
+      "description":"",
+      "done": "false",
+      "sectionId":1
+    },
+    {
+      "id": 3,
+      "title": "clean room",
+      "description":"",
+      "done": "true",
+      "sectionId":2
     }
   ],
-  "comments": [
+  "sections": [
     {
       "id": 1,
-      "body": "some comment",
-      "postId": 1
+      "title": "learnen"
+      
+    },
+    {
+      "id": 2,
+      "title": "clean"
+      
     }
-  ],
-  "profile": {
-    "name": "typicode"
-  }
+  ]
+  
 }

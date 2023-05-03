@@ -5,7 +5,7 @@ import CompletedTasks from "./CompletedTasks"
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 
-const ViewSections=({sectionData,sectionIndex,setSection})=>{
+const ViewSection=({sectionData,sectionIndex,setSection})=>{
     
     const [showTaskForm, setShowTaskForm] = useState(false);
     const [taskValue,setTaskValue]=useState(
@@ -14,13 +14,7 @@ const ViewSections=({sectionData,sectionIndex,setSection})=>{
             taskDescription:""
         }
     )
-    const [todos,setTodos]=useState([
-        // {id: 1, sectionId:"", title: "item 1", done: false},
-        // {id: 2, sectionId:"", title: "item 2", done: false},
-        // {id: 3, sectionId:"", title: "item 3", done: false},
-        // {id: 4, sectionId:"", title: "item 5", done: false},
-        // {id: 5, sectionId:"", title: "item 6", done: false},
-    ])
+    
 
     const [selectedDate, setSelectedDate] = useState(null);
     const datepickerRef = useRef(null);
@@ -49,26 +43,26 @@ const ViewSections=({sectionData,sectionIndex,setSection})=>{
     }
 
     const handleAddTask=()=>{
-        const lastId = todos.length > 0 ? todos[todos.length - 1].id : 0;
-        const newTodo = {   
-            title: taskValue.taskName,
-            description: taskValue.taskDescription,
-            sectionId:sectionIndex,
-            done:false,
-            id:lastId+1
-          };
-         console.log("newTodo",newTodo);
-          setTodos([...todos,newTodo])
-          setTaskValue({taskName:"",taskDescription:""})
-          toggleForm()
+        // const lastId = todos.length > 0 ? todos[todos.length - 1].id : 0;
+        // const newTodo = {   
+        //     title: taskValue.taskName,
+        //     description: taskValue.taskDescription,
+        //     sectionId:sectionIndex,
+        //     done:false,
+        //     id:lastId+1
+        //   };
+        //  console.log("newTodo",newTodo);
+        //   setTodos([...todos,newTodo])
+        //   setTaskValue({taskName:"",taskDescription:""})
+        //   toggleForm()
     }
 
 
     const handleChangeDone=(id)=>{
-        const newTodos = [...todos];
-        newTodos.find(item=>item.id===id).done = true
-        console.log("find",newTodos);
-        setTodos(newTodos);
+        // const newTodos = [...todos];
+        // newTodos.find(item=>item.id===id).done = true
+        // console.log("find",newTodos);
+        // setTodos(newTodos);
     }
 
     
@@ -80,7 +74,7 @@ const ViewSections=({sectionData,sectionIndex,setSection})=>{
             </div>
 
             <div>
-                {todos.filter(item=> !item.done).map(item=>{
+                {sectionData.task.filter(item=> !item.done).map(item=>{
                  return   <div className="itemsDontDone">
                             <input type="checkbox"
                                    className="mr-2" 
@@ -93,7 +87,7 @@ const ViewSections=({sectionData,sectionIndex,setSection})=>{
 
                 <h6>Completed Tasks</h6>
                 {/* <CompletedTasks todos={todos}/> */}
-                {todos.filter(item=> item.done).map(item=>{
+                {sectionData.task.filter(item=> item.done).map(item=>{
                  return   <div className="itemsDone" >
                             {item.title}
                           </div>
@@ -174,4 +168,4 @@ const ViewSections=({sectionData,sectionIndex,setSection})=>{
     )
 }
 
-export default ViewSections
+export default ViewSection
