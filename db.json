@@ -25,7 +25,7 @@
       "title": "yc",
       "description": "cy",
       "sectionId": 1,
-      "done": false,
+      "done": true,
       "id": 4
     },
     {
@@ -43,7 +43,7 @@
       "title": "sss",
       "description": "sss",
       "sectionId": 2,
-      "done": false,
+      "done": true,
       "id": 7
     },
     {

@@ -101,20 +101,20 @@ const ViewSection=({sectionData,updateData,sectionIndex,setSection})=>{
                           </div>
                 })}
 
-                <h6>Completed Tasks</h6>
-                {/* <CompletedTasks todos={todos}/> */}
-                {sectionData.tasks.filter(item=> item.done).map(item=>{
+                
+                <CompletedTasks sectionData={sectionData} />
+                {/* {sectionData.tasks.filter(item=> item.done).map(item=>{
                  return   <div className="itemsDone" >
                             {item.title}
                           </div>
-                })}
+                })} */}
 
                
             </div>
 
             {!showTaskForm &&
-            <div>
-                <Button className="addTaskButton"
+            <div ml-5>
+                <Button className="addTaskButton ml-3"
                         onClick={toggleForm}>+ Add Task
                 
                 </Button>

@@ -132,3 +132,23 @@ input[type="text"].taskInput {
     border: unset;
     outline: unset;
 }
+
+.completedTask_container{
+    display: flex;
+    align-items: center;
+}
+
+button.accordion-button {
+    border: unset;
+    color: #db4c3f;
+    outline: unset;
+    background-color: transparent;
+    font-size: 1rem;
+}
+
+.angleDown{
+    color: #db4c3f;
+    cursor: pointer;
+    font-weight: normal;
+    font-size: small;
+}
