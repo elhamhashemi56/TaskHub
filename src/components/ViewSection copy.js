@@ -67,7 +67,11 @@ const ViewSection=({sectionData,updateData,sectionIndex,setSection})=>{
 
 
     const handleChangeDone=(id)=>{
-        
+        // const newTodos = [...todos];
+        // newTodos.find(item=>item.id===id).done = true
+        // console.log("find",newTodos);
+        // setTodos(newTodos);
+
         const newTodo={
             done:true
         }
@@ -79,45 +83,13 @@ const ViewSection=({sectionData,updateData,sectionIndex,setSection})=>{
         .catch(err=>err.message)
     }
 
-    const handleDeleteTaskNotDone=(id)=>{
-        const answer = window.confirm('Are you sure you want to delete this Task?');
-
-        if (answer) {
+    const handleDeleteNotDoneTask=(id)=>{
+        
         TodoService.deleteTodo(id)
         .then(res=>{
             updateData()
         })
         .catch(err=>err.message)
-        }
-    }
-
-    const handleDeleteSection=(id)=>{
-        const answer = window.confirm('Are you sure you want to delete this Section?');
-
-        if (answer) {
-            TodoService.deleteSection(id)
-            .then(res=>{
-                updateData()
-            })
-            .catch(err=>err.message)
-        } 
-       
-    }
-
-    const handleDeleteCompletedTasks=()=>{
-        const answer = window.confirm('Are you sure you want to delete completed Tasks?');
-
-        if (answer) {
-            sectionData.tasks.filter(item => item.done).forEach(item => {
-                TodoService.deleteTodo(item.id)
-                    .then(res=>{
-                       
-                    })
-                    .catch(err=>err.message)
-                    
-            })
-            
-        } 
     }
 
     return(
@@ -125,11 +97,7 @@ const ViewSection=({sectionData,updateData,sectionIndex,setSection})=>{
     
             <div className="mb-2 threeDot_container">
                 <span className="sectionNameKlass ">{sectionData.sectionName}</span>
-            
-                <ThreeDot id={sectionData.id}
-                          updateData={updateData}
-                          handleDelete={()=>handleDeleteSection(sectionData.id)}
-                />
+                <div><h5>...</h5></div>
             </div>
 
             <div>
@@ -144,20 +112,17 @@ const ViewSection=({sectionData,updateData,sectionIndex,setSection})=>{
                                     onChange={()=>handleChangeDone(item.id)}
                                     />
                                 {item.title}
-                                
+                                <button onClick={()=>handleDeleteNotDoneTask(item.id)}>del</button>
                             </div>
                             
-                            <ThreeDot id={item.id}
-                                      updateData={updateData}
-                                      handleDelete={()=>handleDeleteTaskNotDone(item.id)}
-                            />
-                           
+                            <ThreeDot />
+                            {/* <div><h5>...</h5></div> */}
                           </div>
                 })}
 
                 <div className="threeDot_container">
                     <CompletedTasks sectionData={sectionData} />
-                    <button onClick={handleDeleteCompletedTasks}>del</button>
+                    <div><h5>...</h5></div>
                 </div>
                
             

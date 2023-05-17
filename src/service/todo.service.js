@@ -36,5 +36,11 @@ export const TodoService = {
     },
     updataTodo(id,newTodo){
         return axios.patch(`${baseUrl}/todos/${id}`,newTodo)
+    },
+    deleteTodo(id){
+        return axios.delete(`${baseUrl}/todos/${id}`)
+    },
+    deleteSection(id){
+        return axios.delete(`${baseUrl}/sections/${id}`)
     }
 }
