@@ -2,7 +2,7 @@ import {Dropdown} from 'react-bootstrap';
 import { TodoService } from '../service/todo.service';
 
 
-const ThreeDot=({id,updateData,handleDelete})=>{
+const ThreeDot=({id,updateData,handleDelete,handleEdit})=>{
     console.log(id);
 
     // const handleDelete=(id)=>{
@@ -23,7 +23,7 @@ const ThreeDot=({id,updateData,handleDelete})=>{
           </Dropdown.Toggle>
     
           <Dropdown.Menu>
-            <Dropdown.Item href="#/action-1">Edit</Dropdown.Item>
+            <Dropdown.Item href="#/action-1" onClick={handleEdit}>Edit</Dropdown.Item>
             <Dropdown.Item href="#/action-2" onClick={handleDelete}>Delete</Dropdown.Item>
             <Dropdown.Item href="#/action-3">Something else</Dropdown.Item>
           </Dropdown.Menu>

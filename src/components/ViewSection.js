@@ -21,6 +21,7 @@ const ViewSection=({sectionData,updateData,sectionIndex,setSection})=>{
 
     const [selectedDate, setSelectedDate] = useState(null);
     const datepickerRef = useRef(null);
+    const[sectionEditable,setSectionEditable]=useState(false)
 
     const handleDateChange = (date) => {
     setSelectedDate(date);
@@ -120,15 +121,28 @@ const ViewSection=({sectionData,updateData,sectionIndex,setSection})=>{
         } 
     }
 
+    const handleEditSection=()=>{
+        setSectionEditable(true)
+    }
+
     return(
         <div className="viewSection_Container mb-5">
-    
+             
             <div className="mb-2 threeDot_container">
-                <span className="sectionNameKlass ">{sectionData.sectionName}</span>
+            {sectionEditable ?
+            <>
+                <input />
+                <button>save</button>
+                <button>cancle</button>
+            </>
+            
+            :<span className="sectionNameKlass ">{sectionData.sectionName}</span>
+            }
             
                 <ThreeDot id={sectionData.id}
                           updateData={updateData}
                           handleDelete={()=>handleDeleteSection(sectionData.id)}
+                          handleEdit={(()=>handleEditSection(sectionData.id))}
                 />
             </div>
 
@@ -150,6 +164,7 @@ const ViewSection=({sectionData,updateData,sectionIndex,setSection})=>{
                             <ThreeDot id={item.id}
                                       updateData={updateData}
                                       handleDelete={()=>handleDeleteTaskNotDone(item.id)}
+                                      
                             />
                            
                           </div>
