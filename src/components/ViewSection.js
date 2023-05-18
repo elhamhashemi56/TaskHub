@@ -22,6 +22,7 @@ const ViewSection=({sectionData,updateData,sectionIndex,setSection})=>{
     const [selectedDate, setSelectedDate] = useState(null);
     const datepickerRef = useRef(null);
     const[sectionEditable,setSectionEditable]=useState(false)
+    const [sectionInput,setSectionInput]=useState("")
 
     const handleDateChange = (date) => {
     setSelectedDate(date);
@@ -123,6 +124,30 @@ const ViewSection=({sectionData,updateData,sectionIndex,setSection})=>{
 
     const handleEditSection=()=>{
         setSectionEditable(true)
+        setSectionInput(sectionData.sectionName)
+    }
+
+    const handleCancleEditSection=()=>{
+        setSectionEditable(false)
+        setSectionInput("")
+        
+    }
+
+    const handleChangeSectionInput=(e)=>{
+        setSectionInput(e.target.value)
+    }
+
+    const handleSaveSectionInput=()=>{
+        const body={
+            title:sectionInput
+        }
+        TodoService.editSection(sectionData.id,body)
+        .then(res=>{
+            updateData()
+            setSectionEditable(false)
+        })
+        .catch(err=>err.message)
+
     }
 
     return(
@@ -131,9 +156,12 @@ const ViewSection=({sectionData,updateData,sectionIndex,setSection})=>{
             <div className="mb-2 threeDot_container">
             {sectionEditable ?
             <>
-                <input />
-                <button>save</button>
-                <button>cancle</button>
+                <input type="input"
+                       value={sectionInput}
+                       onChange={handleChangeSectionInput}
+                />
+                <button onClick={handleSaveSectionInput}>save</button>
+                <button onClick={handleCancleEditSection}>cancle</button>
             </>
             
             :<span className="sectionNameKlass ">{sectionData.sectionName}</span>
