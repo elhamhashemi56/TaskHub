@@ -1,14 +1,6 @@
 {
   "todos": [
     {
-      "done": true,
-      "id": 5
-    },
-    {
-      "done": true,
-      "id": 9
-    },
-    {
       "title": "dddd",
       "description": "",
       "sectionId": 2,
@@ -18,10 +10,7 @@
     },
     {
       "title": "wohnzimmer",
-      "description": "fff",
-      "sectionId": 1,
-      "done": false,
-      "date": "",
+      "date": "2023-05-01T22:00:00.000Z",
       "id": 12
     },
     {
@@ -33,10 +22,8 @@
       "id": 16
     },
     {
-      "title": "wohnzimmer",
-      "description": "cy",
-      "sectionId": 2,
-      "done": false,
+      "title": "",
+      "date": "",
       "id": 17
     },
     {
@@ -49,19 +36,21 @@
     },
     {
       "title": "ddd",
-      "description": "ggg",
-      "sectionId": 1,
-      "done": false,
       "date": "2023-05-29T22:00:00.000Z",
       "id": 19
     },
     {
       "title": "s",
-      "description": "ff",
-      "sectionId": 1,
-      "done": false,
-      "date": "2023-05-29",
+      "date": "2023-05-18T00:00:00.000Z",
       "id": 20
+    },
+    {
+      "title": "",
+      "id": 21
+    },
+    {
+      "title": "",
+      "id": 22
     }
   ],
   "sections": [

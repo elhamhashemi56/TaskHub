@@ -173,6 +173,7 @@ const ViewSection=({sectionData,updateData,sectionIndex,setSection})=>{
             taskDescription: task.description,
             taskDate: taskDate,
   }));
+ 
     }
 //################################################
     const handleCancelEditTask=()=>{
@@ -181,6 +182,31 @@ const ViewSection=({sectionData,updateData,sectionIndex,setSection})=>{
         taskValue.taskDescription=""
         taskValue.taskDate=""
     }
+//################################################
+
+const handleSaveEditTask=()=>{
+    // const taskId = sectionData.tasks.find((task) => task.title === taskValue.taskName)?.id;
+    // console.log("id",taskId);
+
+    // if (!taskId) {
+    //     console.error("Task ID not found");
+    //     return;
+    //   }
+
+    const body={
+        title:taskValue.taskName,
+        description:taskValue.description,
+        date:taskValue.taskDate
+    }
+
+    TodoService.updateTask(id,body)
+    .then(res=>{
+        setTaskEditable(false)
+        updateData()
+    })
+    .catch(err=>err.message)
+
+}
 //################################################
     return(
         <div className="viewSection_Container mb-5">
@@ -242,7 +268,7 @@ const ViewSection=({sectionData,updateData,sectionIndex,setSection})=>{
                           </div>
                     })
 //#############################                   
-                :<Form className="task_container">
+                :<Form className="task_container" >
                 <input type="text"
                         placeholder="Enter Task Name"
                         className="form-control mb-3 ml-0 taskInput"
@@ -282,11 +308,8 @@ const ViewSection=({sectionData,updateData,sectionIndex,setSection})=>{
                 <div className="line"></div>
                 <div className="buttonTask_Container">
                     <div>
-                        <input></input>
-                    </div>
-                    <div>
                         <Button className="classPlusButton"
-                            onClick={handleAddTask}
+                            onClick={() => handleSaveEditTask(sectionData.tasks.id)}
                             disabled={!taskValue.taskName}
                             >Save
                         </Button>

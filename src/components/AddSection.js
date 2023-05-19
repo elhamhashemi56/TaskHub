@@ -43,6 +43,8 @@ const AddSection=()=>{
    const sections=useMemo(()=>{
        return allsections.map(item=>{
             const tasks=allTodos.filter(ele=>ele.sectionId === item.id)
+            // console.log("tasks",tasks);
+            // console.log("idtask",tasks.id);
             return{
                 id:item.id,
                 sectionName:item.title,
