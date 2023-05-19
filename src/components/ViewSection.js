@@ -14,42 +14,43 @@ import { RiDeleteBin3Line } from "react-icons/ri";
 const ViewSection=({sectionData,updateData,sectionIndex,setSection})=>{
     
     const [showTaskForm, setShowTaskForm] = useState(false);
+    const [selectedDate, setSelectedDate] = useState(null);
+    const datepickerRef = useRef(null);
+    const [sectionEditable,setSectionEditable]=useState(false)
+    const [taskEditable,setTaskEditable]=useState(false)
+    const [sectionInput,setSectionInput]=useState("")
+    const [taskInput,setTaskInput]=useState()
     const [taskValue,setTaskValue]=useState(
         {
             taskName:"",
             taskDescription:""
         }
     )
-    
 
-    const [selectedDate, setSelectedDate] = useState(null);
-    const datepickerRef = useRef(null);
-    const[sectionEditable,setSectionEditable]=useState(false)
-    const [sectionInput,setSectionInput]=useState("")
-
+//################################################
     const handleDateChange = (date) => {
     setSelectedDate(date);
     };
-    
+//################################################    
     const handleChangeTask=(e)=>{
         const newTaskValue = {...taskValue};
         console.log("e.target.value",e.target.value);
         newTaskValue[e.target.name] = e.target.value;
         setTaskValue(newTaskValue);
     }
-
+//################################################
   
     const toggleForm = () => {
         setShowTaskForm(!showTaskForm);
         
     }
-
+//################################################
     const handleCancel=()=>{
         taskValue.taskName=""
         taskValue.taskDescription=""
         toggleForm()
     }
-
+//################################################
     const handleAddTask=()=>{
 
         const body={
@@ -69,7 +70,7 @@ const ViewSection=({sectionData,updateData,sectionIndex,setSection})=>{
             setTaskValue({taskName:"",taskDescription:""})
             toggleForm()
     }
-
+//################################################
 
     const handleChangeDone=(id)=>{
         
@@ -83,7 +84,7 @@ const ViewSection=({sectionData,updateData,sectionIndex,setSection})=>{
         })
         .catch(err=>err.message)
     }
-
+//################################################
     const handleDeleteTaskNotDone=(id)=>{
         const answer = window.confirm('Are you sure you want to delete this Task?');
 
@@ -95,7 +96,7 @@ const ViewSection=({sectionData,updateData,sectionIndex,setSection})=>{
         .catch(err=>err.message)
         }
     }
-
+//################################################
     const handleDeleteSection=(id)=>{
         const answer = window.confirm('Are you sure you want to delete this Section?');
 
@@ -108,7 +109,7 @@ const ViewSection=({sectionData,updateData,sectionIndex,setSection})=>{
         } 
        
     }
-
+//################################################
     const handleDeleteCompletedTasks = () => {
         const itemDone = sectionData.tasks.filter(item => item.done)
         if (itemDone.length == 0) {
@@ -128,21 +129,22 @@ const ViewSection=({sectionData,updateData,sectionIndex,setSection})=>{
             }
         }
     }
+//################################################
     const handleEditSection=()=>{
         setSectionEditable(true)
         setSectionInput(sectionData.sectionName)
     }
-
+//################################################
     const handleCancleEditSection=()=>{
         setSectionEditable(false)
         setSectionInput("")
         
     }
-
+//################################################
     const handleChangeSectionInput=(e)=>{
         setSectionInput(e.target.value)
     }
-
+//################################################
     const handleSaveSectionInput=()=>{
         const body={
             title:sectionInput
@@ -153,9 +155,13 @@ const ViewSection=({sectionData,updateData,sectionIndex,setSection})=>{
             setSectionEditable(false)
         })
         .catch(err=>err.message)
-
     }
-
+//################################################
+    const handleEditTaskNotDone=(id)=>{
+        setTaskEditable(true)
+        const task = sectionData.tasks.find((task) => task.id === id);
+    }
+//################################################
     return(
         <div className="viewSection_Container mb-5">
              
@@ -193,8 +199,8 @@ const ViewSection=({sectionData,updateData,sectionIndex,setSection})=>{
 
             <div>
                 
-                {sectionData.tasks.filter(item=> !item.done).map(item=>{
-                    
+                {!taskEditable ? sectionData.tasks.filter(item=> !item.done).map(item=>{
+                  
                  return   <div className="itemsDontDone threeDot_container">
                             <div>
                                 <input type="checkbox"
@@ -205,15 +211,73 @@ const ViewSection=({sectionData,updateData,sectionIndex,setSection})=>{
                                 {item.title}
                                 
                             </div>
-                            
+                           
                             <ThreeDot id={item.id}
                                       updateData={updateData}
                                       handleDelete={()=>handleDeleteTaskNotDone(item.id)}
+                                      handleEdit={()=>handleEditTaskNotDone(item.id)}
                                       
                             />
                            
                           </div>
-                })}
+                    })
+//#############################                   
+                :<Form className="task_container">
+                <input type="text"
+                        placeholder="Enter Task Name"
+                        className="form-control mb-3 ml-0 taskInput"
+                        value={taskInput}
+                        
+                        />
+                <input type="text"
+                        placeholder="Enter Description"
+                        className="form-control mb-3 ml-0 taskInput"
+                        value={taskValue.taskDescription}
+                        name={"taskDescription"}
+                        onChange={handleChangeTask}
+                        
+                        />
+                        
+                <div className="iconsTaskForm"> 
+                       
+                    <div className="datePicker mr-2">
+                        <img onClick={() => datepickerRef.current.setOpen(true)}  src="/assets/icons/DueDate.svg" />
+                        <DatePicker
+                                    selected={selectedDate}
+                                    onChange={handleDateChange}
+                                    ref={datepickerRef}
+                                />
+                    </div>
+                    <div>
+                        <img className="svgInAddTask mr-2" src="/assets/icons/Priority.svg" />
+                    </div>
+                    <div>
+                        <img className="svgInAddTask" src="/assets/icons/Reminder.svg" />
+                    </div>
+                </div>
+                        
+                         
+                <div className="line"></div>
+                <div className="buttonTask_Container">
+                    <div>
+                        <input></input>
+                    </div>
+                    <div>
+                        <Button className="classPlusButton"
+                            onClick={handleAddTask}
+                            disabled={!taskValue.taskName}
+                            >+
+                        </Button>
+                        <Button onClick={handleCancel} 
+                                className="cancelButton"
+                                >x
+                        </Button>
+                    </div>
+                </div>
+                
+            </Form>
+//#############################                
+                }
  
                 <div className="threeDot_container">
                     <CompletedTasks sectionData={sectionData} />
