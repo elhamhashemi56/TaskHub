@@ -19,17 +19,20 @@ const ViewSection=({sectionData,updateData,sectionIndex,setSection})=>{
     const [sectionEditable,setSectionEditable]=useState(false)
     const [taskEditable,setTaskEditable]=useState(false)
     const [sectionInput,setSectionInput]=useState("")
-    const [taskInput,setTaskInput]=useState("")
     const [taskValue,setTaskValue]=useState(
         {
             taskName:"",
-            taskDescription:""
+            taskDescription:"",
+            taskDate:""
         }
     )
 
 //################################################
     const handleDateChange = (date) => {
-    setSelectedDate(date);
+        setTaskValue((prevTaskValue) => ({
+            ...prevTaskValue,
+            taskDate: date,
+          }));
     };
 //################################################    
     const handleChangeTask=(e)=>{
@@ -57,7 +60,8 @@ const ViewSection=({sectionData,updateData,sectionIndex,setSection})=>{
             title:taskValue.taskName,
             description:taskValue.taskDescription,
             sectionId:sectionData.id,
-            done:false
+            done:false,
+            date:taskValue.taskDate
 
         }
 
@@ -158,8 +162,24 @@ const ViewSection=({sectionData,updateData,sectionIndex,setSection})=>{
     }
 //################################################
     const handleEditTaskNotDone=(id)=>{
-        setTaskEditable(true)
+        
+        setTaskEditable(true);
         const task = sectionData.tasks.find((task) => task.id === id);
+        const taskDate = task.date ? new Date(task.date) : null;
+
+        setTaskValue((prevTaskValue) => ({
+            ...prevTaskValue,
+            taskName: task.title,
+            taskDescription: task.description,
+            taskDate: taskDate,
+  }));
+    }
+//################################################
+    const handleCancelEditTask=()=>{
+        setTaskEditable(false)
+        taskValue.taskName=""
+        taskValue.taskDescription=""
+        taskValue.taskDate=""
     }
 //################################################
     return(
@@ -226,7 +246,9 @@ const ViewSection=({sectionData,updateData,sectionIndex,setSection})=>{
                 <input type="text"
                         placeholder="Enter Task Name"
                         className="form-control mb-3 ml-0 taskInput"
-                        value={taskInput}
+                        value={taskValue.taskName}
+                        name={"taskName"}
+                        onChange={handleChangeTask}
                         
                         />
                 <input type="text"
@@ -243,7 +265,7 @@ const ViewSection=({sectionData,updateData,sectionIndex,setSection})=>{
                     <div className="datePicker mr-2">
                         <img onClick={() => datepickerRef.current.setOpen(true)}  src="/assets/icons/DueDate.svg" />
                         <DatePicker
-                                    selected={selectedDate}
+                                    selected={taskValue.taskDate}
                                     onChange={handleDateChange}
                                     ref={datepickerRef}
                                 />
@@ -266,11 +288,11 @@ const ViewSection=({sectionData,updateData,sectionIndex,setSection})=>{
                         <Button className="classPlusButton"
                             onClick={handleAddTask}
                             disabled={!taskValue.taskName}
-                            >+
+                            >Save
                         </Button>
-                        <Button onClick={handleCancel} 
+                        <Button onClick={handleCancelEditTask} 
                                 className="cancelButton"
-                                >x
+                                >Cancel
                         </Button>
                     </div>
                 </div>
@@ -299,7 +321,7 @@ const ViewSection=({sectionData,updateData,sectionIndex,setSection})=>{
             }
 
             {showTaskForm && (
-                <Form className="task_container">
+                <Form className="task_container" onSubmit={handleAddTask}>
                     <input type="text"
                             placeholder="Enter Task Name"
                             className="form-control mb-3 ml-0 taskInput"
@@ -321,7 +343,7 @@ const ViewSection=({sectionData,updateData,sectionIndex,setSection})=>{
                         <div className="datePicker mr-2">
                             <img onClick={() => datepickerRef.current.setOpen(true)}  src="/assets/icons/DueDate.svg" />
                             <DatePicker
-                                        selected={selectedDate}
+                                        selected={taskValue.taskDate}
                                         onChange={handleDateChange}
                                         ref={datepickerRef}
                                     />
@@ -337,12 +359,10 @@ const ViewSection=({sectionData,updateData,sectionIndex,setSection})=>{
                              
                     <div className="line"></div>
                     <div className="buttonTask_Container">
-                        <div>
-                            <input></input>
-                        </div>
+                        
                         <div>
                             <Button className="classPlusButton"
-                                onClick={handleAddTask}
+                                type="submit"
                                 disabled={!taskValue.taskName}
                                 >+
                             </Button>
