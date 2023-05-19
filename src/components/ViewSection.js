@@ -8,6 +8,7 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { TodoService } from "../service/todo.service";
 
+
 const ViewSection=({sectionData,updateData,sectionIndex,setSection})=>{
     
     const [showTaskForm, setShowTaskForm] = useState(false);
@@ -155,14 +156,25 @@ const ViewSection=({sectionData,updateData,sectionIndex,setSection})=>{
              
             <div className="mb-2 threeDot_container">
             {sectionEditable ?
-            <>
-                <input type="input"
-                       value={sectionInput}
-                       onChange={handleChangeSectionInput}
-                />
-                <button onClick={handleSaveSectionInput}>save</button>
-                <button onClick={handleCancleEditSection}>cancle</button>
-            </>
+            <Form  onSubmit={handleSaveSectionInput}>
+                    <input type="text" 
+                           className="form-control mb-3 ml-0 sectionInput"  
+                           value={sectionInput}
+                           onChange={handleChangeSectionInput}
+                           />
+                    
+                    <Button
+                        type="submit"
+                        className="mr-2 addSectionButton"
+                        
+                    >Save   
+                    </Button>
+                    <Button className="cancelButton"
+                            onClick={handleCancleEditSection}    
+                                
+                    >Cancel
+                    </Button>
+                </Form>
             
             :<span className="sectionNameKlass ">{sectionData.sectionName}</span>
             }
@@ -197,13 +209,15 @@ const ViewSection=({sectionData,updateData,sectionIndex,setSection})=>{
                            
                           </div>
                 })}
-
+ 
                 <div className="threeDot_container">
                     <CompletedTasks sectionData={sectionData} />
+                   
+                    <i class="fa-solid fa-trash-can"></i>
                     <button onClick={handleDeleteCompletedTasks}>del</button>
                 </div>
                
-            
+               
                
             </div>
 
