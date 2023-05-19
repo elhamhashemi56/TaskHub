@@ -19,7 +19,7 @@ const ViewSection=({sectionData,updateData,sectionIndex,setSection})=>{
     const [sectionEditable,setSectionEditable]=useState(false)
     const [taskEditable,setTaskEditable]=useState(false)
     const [sectionInput,setSectionInput]=useState("")
-    const [taskInput,setTaskInput]=useState()
+    const [taskInput,setTaskInput]=useState("")
     const [taskValue,setTaskValue]=useState(
         {
             taskName:"",
