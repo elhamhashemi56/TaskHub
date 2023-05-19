@@ -182,3 +182,7 @@ button.accordion-button {
     border: unset;
 }
 
+.delIcon{
+    font-size: 1.2rem;
+    cursor: pointer;
+}

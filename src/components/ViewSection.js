@@ -7,6 +7,8 @@ import ThreeDot from "./ThreeDot";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { TodoService } from "../service/todo.service";
+// import { FaBeer } from "@react-icons/all-files/fa/FaBeer";
+import { RiDeleteBin3Line } from "react-icons/ri";
 
 
 const ViewSection=({sectionData,updateData,sectionIndex,setSection})=>{
@@ -107,22 +109,25 @@ const ViewSection=({sectionData,updateData,sectionIndex,setSection})=>{
        
     }
 
-    const handleDeleteCompletedTasks=()=>{
-        const answer = window.confirm('Are you sure you want to delete completed Tasks?');
+    const handleDeleteCompletedTasks = () => {
+        const itemDone = sectionData.tasks.filter(item => item.done)
+        if (itemDone.length == 0) {
+            alert("There is no item to delete")
+        } else {
+            const answer = window.confirm('Are you sure you want to delete completed Tasks?');
+            if (answer) {
+                sectionData.tasks.filter(item => item.done).forEach(item => {
+                    TodoService.deleteTodo(item.id)
+                        .then(res => {
+                            updateData()
+                        })
+                        .catch(err => err.message)
 
-        if (answer) {
-            sectionData.tasks.filter(item => item.done).forEach(item => {
-                TodoService.deleteTodo(item.id)
-                    .then(res=>{
-                       
-                    })
-                    .catch(err=>err.message)
-                    
-            })
-            
-        } 
+                })
+
+            }
+        }
     }
-
     const handleEditSection=()=>{
         setSectionEditable(true)
         setSectionInput(sectionData.sectionName)
@@ -176,7 +181,7 @@ const ViewSection=({sectionData,updateData,sectionIndex,setSection})=>{
                     </Button>
                 </Form>
             
-            :<span className="sectionNameKlass ">{sectionData.sectionName}</span>
+            :<span className="sectionNameKlass " onClick={handleEditSection}>{sectionData.sectionName}</span>
             }
             
                 <ThreeDot id={sectionData.id}
@@ -212,9 +217,8 @@ const ViewSection=({sectionData,updateData,sectionIndex,setSection})=>{
  
                 <div className="threeDot_container">
                     <CompletedTasks sectionData={sectionData} />
-                   
-                    <i class="fa-solid fa-trash-can"></i>
-                    <button onClick={handleDeleteCompletedTasks}>del</button>
+                    <RiDeleteBin3Line onClick={handleDeleteCompletedTasks} className="delIcon" />
+                    
                 </div>
                
                
