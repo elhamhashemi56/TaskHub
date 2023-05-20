@@ -29,7 +29,7 @@ export const TodoService = {
         return axios.delete(`${baseUrl}/todos/${id}`)
     },
     updateTask(id,newTask){
-        return axios.put(`${baseUrl}/todos/${id}`,newTask)
+        return axios.patch(`${baseUrl}/todos/${id}`,newTask)
     }
     
 }

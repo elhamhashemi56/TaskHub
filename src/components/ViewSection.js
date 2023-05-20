@@ -27,6 +27,8 @@ const ViewSection=({sectionData,updateData,sectionIndex,setSection})=>{
         }
     )
 
+    const [selectedTaskId,setSelectedTaskId]=useState("")
+
 //################################################
     const handleDateChange = (date) => {
         setTaskValue((prevTaskValue) => ({
@@ -162,7 +164,7 @@ const ViewSection=({sectionData,updateData,sectionIndex,setSection})=>{
     }
 //################################################
     const handleEditTaskNotDone=(id)=>{
-        
+        setSelectedTaskId(id)
         setTaskEditable(true);
         const task = sectionData.tasks.find((task) => task.id === id);
         const taskDate = task.date ? new Date(task.date) : null;
@@ -185,13 +187,7 @@ const ViewSection=({sectionData,updateData,sectionIndex,setSection})=>{
 //################################################
 
 const handleSaveEditTask=()=>{
-    // const taskId = sectionData.tasks.find((task) => task.title === taskValue.taskName)?.id;
-    // console.log("id",taskId);
-
-    // if (!taskId) {
-    //     console.error("Task ID not found");
-    //     return;
-    //   }
+    const taskId = selectedTaskId
 
     const body={
         title:taskValue.taskName,
@@ -199,7 +195,7 @@ const handleSaveEditTask=()=>{
         date:taskValue.taskDate
     }
 
-    TodoService.updateTask(id,body)
+    TodoService.updateTask(taskId,body)
     .then(res=>{
         setTaskEditable(false)
         updateData()
@@ -309,7 +305,7 @@ const handleSaveEditTask=()=>{
                 <div className="buttonTask_Container">
                     <div>
                         <Button className="classPlusButton"
-                            onClick={() => handleSaveEditTask(sectionData.tasks.id)}
+                            onClick={handleSaveEditTask}
                             disabled={!taskValue.taskName}
                             >Save
                         </Button>
