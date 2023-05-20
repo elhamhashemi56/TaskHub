@@ -27,7 +27,7 @@ const ViewSection=({sectionData,updateData,sectionIndex,setSection})=>{
         }
     )
 
-    const [selectedTaskId,setSelectedTaskId]=useState("")
+    const [selectedTaskId,setSelectedTaskId]=useState(null)
 
 //################################################
     const handleDateChange = (date) => {
@@ -175,6 +175,7 @@ const ViewSection=({sectionData,updateData,sectionIndex,setSection})=>{
             taskDescription: task.description,
             taskDate: taskDate,
   }));
+  console.log("taskDescription",task.description);
  
     }
 //################################################
@@ -188,17 +189,19 @@ const ViewSection=({sectionData,updateData,sectionIndex,setSection})=>{
 
 const handleSaveEditTask=()=>{
     const taskId = selectedTaskId
-
     const body={
         title:taskValue.taskName,
-        description:taskValue.description,
-        date:taskValue.taskDate
+        description:taskValue.taskDescription,
+        date:taskValue.taskDate,
+        done:false,
+        sectionId:sectionData.id
     }
-
+console.log("body",body);
     TodoService.updateTask(taskId,body)
     .then(res=>{
-        setTaskEditable(false)
         updateData()
+        setTaskEditable(false)
+        
     })
     .catch(err=>err.message)
 
