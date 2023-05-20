@@ -253,7 +253,14 @@ console.log("body",body);
                                     value={item.done}
                                     onChange={()=>handleChangeDone(item.id)}
                                     />
-                                {item.title}
+                               
+                                <span className="titleTask">{item.title}</span>                               
+                                <div className="ml-4 descriptionTask">{item.description}</div>
+                                <div className="dateTask mt-3">
+                                    <img className="dateTaskImg" src="/assets/icons/DueDate.svg" />
+                                    <div>{item.date}</div>
+                                </div>
+                               
                                 
                             </div>
                            
@@ -323,9 +330,9 @@ console.log("body",body);
 //#############################                
                 }
  
-                <div className="threeDot_container">
+                <div className="CompletedTasks_container">
                     <CompletedTasks sectionData={sectionData} />
-                    <RiDeleteBin3Line onClick={handleDeleteCompletedTasks} className="delIcon" />
+                    <RiDeleteBin3Line onClick={handleDeleteCompletedTasks} className="delIcon mt-2" />
                     
                 </div>
                

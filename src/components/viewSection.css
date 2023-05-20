@@ -16,7 +16,15 @@
 .threeDot_container{
     display: flex;
     justify-content: space-between;
+    align-items: flex-start;
+    /* border: 1px solid green; */
+}
+
+.CompletedTasks_container{
+    display: flex;
+    justify-content: space-between;
     align-items: center;
+    /* border: 1px solid rgb(128, 0, 6); */
 }
 
 Button.addTaskButton{
@@ -185,4 +193,22 @@ button.accordion-button {
 .delIcon{
     font-size: 1.2rem;
     cursor: pointer;
+}
+
+.titleTask{
+    font-size: 1rem;
+}
+.descriptionTask{
+    font-size: 0.8rem;
+}
+
+.dateTask{
+    display: flex;
+    font-size: 0.8rem;
+    color: blue;
+}
+.dateTaskImg{
+    color: blue;
+    margin-left: 20px;
+    margin-right: 5px;
 }
