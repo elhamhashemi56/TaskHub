@@ -31,12 +31,24 @@
       "done": false,
       "date": "2023-05-31T22:00:00.000Z",
       "id": 42
+    },
+    {
+      "title": "Shahansgeburtstag",
+      "description": "um 12 Uhr",
+      "date": "2023-05-29T22:00:00.000Z",
+      "done": false,
+      "sectionId": 2,
+      "id": 43
     }
   ],
   "sections": [
     {
-      "title": "Termin",
+      "title": "Termins",
       "id": 1
+    },
+    {
+      "title": "Veranstaltung",
+      "id": 2
     }
   ]
 }

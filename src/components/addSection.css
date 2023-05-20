@@ -1,12 +1,12 @@
  
 .pageSection_container{
     display: flex;
-    flex-direction: column;
+    align-items: flex-start;
 }
 
 input[type="text"].sectionInput {
     border: 1px solid #e1e0e0;
-    width: 350px;
+    /* width: 350px; */
 }
 
 .section_container{
@@ -81,6 +81,6 @@ Button.cancelButton:active{
 
 .mapKlass{
     display: flex;
-    flex-direction: column;
+    /* flex-direction: column; */
     /* border: 1px solid blue;*/
 } 
