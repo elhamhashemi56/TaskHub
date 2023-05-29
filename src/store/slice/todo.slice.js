@@ -17,3 +17,4 @@ const slice=createSlice({
 })
 
 export default slice.reducer
+export const {setSections,setTodos}=slice.actions

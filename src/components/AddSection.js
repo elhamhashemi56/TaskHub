@@ -5,13 +5,15 @@ import ViewSection from "./ViewSection";
 import { useEffect } from "react";
 import { TodoService } from "../service/todo.service";
 import { useMemo } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import {setSections,setTodos} from "../store/slice/todo.slice"
 
 
 const AddSection=()=>{
     const [showSectionForm, setShowSectionForm] = useState(false);
     const [sectionValue,setSectionValue]=useState("")
-    const [allTodos,setAllTodos]=useState([])
-    const [allsections,setAllSections]=useState([])
+    // const [allTodos,setAllTodos]=useState([])
+    // const [allsections,setAllSections]=useState([])
     //const [sections, setSections] = useState([
         // {
         //     sectionName:"",
@@ -25,17 +27,30 @@ const AddSection=()=>{
         // }
     //]);
 
+//#################### USE REDUX ##########################
+
+    // const {sections:allsections,todos:allTodos}=useSelector(store=>store.todoSlice)
+    const {allsections,allTodos}=useSelector(store=>{
+        return{
+            allsections:store.todoSlice.sections,
+            allTodos:store.todoSlice.todos
+        }
+    })
+
+    const dispatch=useDispatch()
+//########################################################
+
     useEffect(()=>{
         getData()
     },[])
 
     function getData(){
         TodoService.getTodos().then(res=>{
-            setAllTodos(res.data)
+            dispatch(setTodos(res.data))
         }).catch(err=>alert(err.message))
 
         TodoService.getSections().then(res=>{
-            setAllSections(res.data)
+            dispatch(setSections(res.data))
         }).catch(err=>alert(err.message))
     }
 
