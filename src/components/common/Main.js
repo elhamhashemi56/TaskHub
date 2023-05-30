@@ -33,17 +33,10 @@ export const ROUT_LIST=[
 
 
 
-
-
 const Main = () => {
 
-    const {openSidebar,closeSidebar}=useSelector(store=>{
-        return {
-          openSidebar:store.layotSlice.isOpenSidebar,
-          closeSidebar:store.layotSlice.isCloseSidebar
-        }
-      })
-      
+    const {isCloseSidebar:closeSidebar}=useSelector(store=>store.layotSlice)
+    
     return (
         <div id='main' className={`page-content ${closeSidebar ? '' : 'page-content-shifted'}`}>
             <NavbarMain />

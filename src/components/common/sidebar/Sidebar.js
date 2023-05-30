@@ -4,12 +4,7 @@ import "./sidebar.css"
 import { useSelector } from 'react-redux';
 const Sidebar = ()=>{
 
-    const {openSidebar,closeSidebar}=useSelector(store=>{
-        return {
-          openSidebar:store.layotSlice.isOpenSidebar,
-          closeSidebar:store.layotSlice.isCloseSidebar
-        }
-      })
+    const {isOpenSidebar:openSidebar}=useSelector(store=>store.layotSlice)
       
     return(
         <div id='sidebar' className={`sidebar_container ${openSidebar ? '' : 'sidebar-hidden'}`}>

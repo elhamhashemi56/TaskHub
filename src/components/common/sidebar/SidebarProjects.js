@@ -1,8 +1,15 @@
+import { useSelector } from "react-redux"
+
 const SidebarProjects=()=>{
+
+    const {isOpenSidebar:openSidebar}=useSelector(store=>store.layotSlice)
+
     return(
-        <div>
-            <p className="mt-5">sidebar Projects</p>
-        </div>
+        openSidebar &&
+            <div>
+                <p className="mt-5">sidebar Projects</p>
+            </div>
+        
     )
 }
 export default SidebarProjects

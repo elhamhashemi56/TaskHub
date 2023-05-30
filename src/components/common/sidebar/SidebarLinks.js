@@ -4,13 +4,9 @@ import { useSelector } from "react-redux";
 
 
 const SidebarLinks=()=>{
-    const {openSidebar,closeSidebar}=useSelector(store=>{
-        return {
-          openSidebar:store.layotSlice.isOpenSidebar,
-          closeSidebar:store.layotSlice.isCloseSidebar
-        }
-      })
-     
+
+    const {isOpenSidebar:openSidebar}=useSelector(store=>store.layotSlice)
+    
     return(
     <>
         <section className="sidebarLinks_Container mt-5 ml-3 mr-3">
