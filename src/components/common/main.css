@@ -1,0 +1,8 @@
+.page-content {
+    transition: margin-left 0.3s ease;
+   
+  }
+
+.page-content-shifted {
+    margin-left: 200px;
+}

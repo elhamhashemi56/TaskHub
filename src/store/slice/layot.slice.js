@@ -3,14 +3,18 @@ import { createSlice } from "@reduxjs/toolkit";
 const slice=createSlice({
     name:"hamburger",
     initialState:{
-        toggleSidebar:true,
+        isOpenSidebar:true,
+        isCloseSidebar:false
     },
     reducers:{
-        setToggleSidebar(state,action){
-            state.toggleSidebar=action.payload
+        setIsOpenSidebar(state,action){
+            state.isOpenSidebar=action.payload
+        },
+        setIsCloseSidebar(state,action){
+            state.isCloseSidebar=action.payload
         }
     }
 })
 
 export default slice.reducer
-export const {setToggleSidebar} =slice.actions
+export const {setIsOpenSidebar,setIsCloseSidebar} =slice.actions

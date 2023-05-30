@@ -3,21 +3,23 @@ import "./header.css"
 import SearchIcon from "./SearchIcon"
 import "./svgIcon_Style.css"
 import { MdOutlineAccountCircle } from "react-icons/md";
-import { setToggleSidebar } from "../../../store/slice/layot.slice";
+import { setIsOpenSidebar,setIsCloseSidebar } from "../../../store/slice/layot.slice";
 
 
 
 
 const Header = ()=>{
-    const {toggleSide}=useSelector(store=>{
+    const {openSidebar,closeSidebar}=useSelector(store=>{
         return {
-          toggleSide:store.layotSlice.toggleSidebar
+          openSidebar:store.layotSlice.isOpenSidebar,
+          closeSidebar:store.layotSlice.isCloseSidebar
         }
       })
       
     const dispatch=useDispatch()
     const handleToggleHamburger=()=>{
-            dispatch(setToggleSidebar(!toggleSide))
+            dispatch(setIsOpenSidebar(!openSidebar))
+            dispatch(setIsCloseSidebar(!closeSidebar))
     }
    
     return (

@@ -5,6 +5,8 @@ import Today from "../page/Today"
 import Upcoming from "../page/Upcoming"
 import FilterLabels from "../page/FilterLabels"
 import {Navigate, Route, Routes} from "react-router-dom";
+import { useSelector } from 'react-redux'
+import "./main.css"
 
 export const ROUT_LIST=[
     {
@@ -35,8 +37,15 @@ export const ROUT_LIST=[
 
 const Main = () => {
 
+    const {openSidebar,closeSidebar}=useSelector(store=>{
+        return {
+          openSidebar:store.layotSlice.isOpenSidebar,
+          closeSidebar:store.layotSlice.isCloseSidebar
+        }
+      })
+      
     return (
-        <div id='main'>
+        <div id='main' className={`page-content ${closeSidebar ? '' : 'page-content-shifted'}`}>
             <NavbarMain />
             <Routes>
                 {ROUT_LIST.map(item=><Route path={item.path} exact={true} element={<item.element/>} />)}
