@@ -1,25 +1,31 @@
+import { useDispatch, useSelector } from "react-redux";
 import "./header.css"
-import HamburgerButton from "./HamburgerButton"
-// import HomeIcon from "./HomeIcon"
 import SearchIcon from "./SearchIcon"
 import "./svgIcon_Style.css"
 import { MdOutlineAccountCircle } from "react-icons/md";
+import { setToggleSidebar } from "../../../store/slice/layot.slice";
+
 
 
 
 const Header = ()=>{
+    const {toggleSide}=useSelector(store=>{
+        return {
+          toggleSide:store.layotSlice.toggleSidebar
+        }
+      })
+      
+    const dispatch=useDispatch()
+    const handleToggleHamburger=()=>{
+            dispatch(setToggleSidebar(!toggleSide))
+    }
+   
     return (
         <div id='header' className="header_container">
             <section className="header_Left">
-                
-                <HamburgerButton />
-                {/* <HomeIcon /> */}
-                
+                    <img onClick={handleToggleHamburger} className="overSvg svgIcon" src="/assets/icons/HamburgerIcon.svg" />
                     <img  className="overSvg svgIcon" src="/assets/icons/HomeIcon.svg" />
-                    {/* <use className="overSvg svgIcon" xlinkHref="/assets/icons/HomeIcon.svg" /> */}
-            
-                
-                <SearchIcon />
+                    <SearchIcon />
             </section>
             <section className="header_Right">
                 <div className="accountKlass">
